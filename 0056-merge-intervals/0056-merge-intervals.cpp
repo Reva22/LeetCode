@@ -14,7 +14,6 @@ public:
             else{
                 b.push_back(maxi);
                 a.push_back(intervals[i+1][0]);
-                cout<<i<<" "<<a[a.size()-2]<<" "<<b[b.size()-1]<<endl;
                 maxi = intervals[i+1][1];
             }
         }
