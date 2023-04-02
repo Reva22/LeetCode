@@ -12,7 +12,6 @@ class Solution{
         // code here
         map<long long int,long long int>mp;
         int count = 0;
-        bool start = false;
         long long int sum =0;
         mp[0]=1;
         for(int i=1;i<=n;i++){
