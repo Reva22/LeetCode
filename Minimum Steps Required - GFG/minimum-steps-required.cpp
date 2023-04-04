@@ -10,14 +10,28 @@ using namespace std;
 
 int minSteps(string str) {
     // Write your code here.
-    int c = 1;
-    char s = str[0];
-    for(int i=1;i<str.length();i++){
-        if(str[i]!=s && str[i]!=str[i-1]){
-            c++;
+    int counta=0,countb=0;
+    int n=str.length();
+    int i=0;
+    while(i<str.length())
+    {
+        if(str[i]=='a')
+        {
+            while(str[i]=='a' and i<n)
+            {
+                i++;
+            }
+            counta++;
+        }
+        else{
+            while(str[i]=='b' and i<n)
+            {
+                i++;
+            }
+            countb++;
         }
     }
-    return c;
+    return min(counta,countb)+1;
 }
 
 //{ Driver Code Starts.
