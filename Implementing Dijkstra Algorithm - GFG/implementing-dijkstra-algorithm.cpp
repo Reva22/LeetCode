@@ -8,86 +8,38 @@ class Solution
 	public:
 	//Function to find the shortest distance of all the vertices
     //from the source vertex S.
-    vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
+    vector <int> dijkstra(int n, vector<vector<int>> adj[], int src)
     {
         // Code here
+       vector<int>ans(n,0);
+        for(int i=0;i<n;i++){
+            ans[i]=1e9;
+        }
+        ans[src]=0;
         
-        // vector<int>ans(n,0);
-        // for(int i=0;i<n;i++){
-        //     ans[i]=1e9;
-        // }
-        // ans[src]=0;
+        priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> minHeap;
+        minHeap.push(make_pair(src,0));
         
-        // priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> minHeap;
-        // minHeap.push(make_pair(src,0));
         
-        // vector<int>vis(n,0);
-        
-        // while(!minHeap.empty()){
+        while(!minHeap.empty()){
             
-        //     int temp = minHeap.top().first;
+            int temp = minHeap.top().first;
+            minHeap.pop();
             
-        //     if(vis[temp]==0){
+            for(auto it:adj[temp]){
                 
-        //         for(auto it:adj[temp]){
-                    
-        //             int v = it[0];
-        //             int wt = it[1];
-                    
-        //             if(ans[temp]+wt<ans[v]){
-        //                 ans[v]=ans[temp]+wt;
-        //                 minHeap.push(make_pair(v,ans[v]));
-        //             }
-        //         }
+                int v = it[0];
+                int wt = it[1];
                 
-        //         minHeap.pop();
-        //     }
-        //     else{
-        //         minHeap.pop();
-        //     }
-        // }
-        
-        // for(int i=0;i<ans.size();i++){
-        //     if(vis[i]==0){
-        //         for(auto it:adj[i]){
-                    
-        //             int v = it[0];
-        //             int wt = it[1];
-                    
-        //             if(ans[i]+wt<ans[v]){
-        //                 ans[v]=ans[i]+wt;
-        //             }
-        //         }
-        //     }
-        //     if(vis[i]==1e9){
-        //         ans[i]=-1;
-        //     }
-        // }
-        
-        // return ans;
-        
-         priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
-        vector<int>dist(V,INT_MAX);
-        dist[S]=0;
-        vector<bool>visited(V,false);
-        pq.push({0,S});
-        while(pq.empty()==false){
-            if(visited[pq.top().second]==false){
-                int u=pq.top().second;
-                int wt=pq.top().first;
-                pq.pop();
-                for(auto v:adj[u]){
-                    if(dist[v[0]]>wt+v[1]){
-                        dist[v[0]]=wt+v[1];
-                        pq.push({dist[v[0]],v[0]});
-                    }
+                if(ans[temp]+wt<ans[v]){
+                    ans[v]=ans[temp]+wt;
+                    minHeap.push(make_pair(v,ans[v]));
                 }
             }
-            else{
-                pq.pop();
-            }
+            
         }
-        return dist;
+        
+        return ans;
        
     }
 };
