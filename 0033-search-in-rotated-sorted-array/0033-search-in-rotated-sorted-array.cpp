@@ -4,12 +4,12 @@ public:
         int l=0;
         int r=nums.size()-1;
         while(l<=r){
-            int mid = (l+r)/2;
+            int mid = l + (r-l)/2;
             if(nums[mid]==target){
                 return mid;
             }
-            else if(nums[l]<nums[mid]){
-                if(nums[l]<=target && nums[mid]<target){
+            else if(nums[l]<=nums[mid]){
+                if(nums[l]<=target && nums[mid]>target){
                     r=mid-1;
                 }
                 else{
@@ -24,11 +24,7 @@ public:
                 }
             }
         }
-        for(int i=0;i<nums.size();i++){
-            if(nums[i]==target){
-                return i;
-            }
-        }
+        
         
         return -1;
     }
