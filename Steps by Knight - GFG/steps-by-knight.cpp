@@ -31,7 +31,7 @@ class Solution
                 return dist[x][y];
             }
     
-            for (auto dir : dirs) {
+            for (auto& dir : dirs) {
                 int nx = x + dir[0];
                 int ny = y + dir[1];
     
