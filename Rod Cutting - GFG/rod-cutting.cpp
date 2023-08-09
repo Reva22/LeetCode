@@ -33,7 +33,7 @@ class Solution{
         //code here
         int maxSize = *max_element(price,price+n);
         maxSize*=n;
-        dp.resize(1002,vector<int>(1002,-1));
+        dp.resize(n+1,vector<int>(n+1,-1));
         return knapsack(price,n,0,n,dp);
     }
 };
